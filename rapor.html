@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ekin Teknik Durum Raporu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ink:#11181B; --ink-2:#39494E; --muted:#6B7C80;
+  --line:#D3DCDA; --line-2:#B6C4C1;
+  --accent:#0C6B66; --accent-soft:#E6F1F0;
+  --low:#B4453A; --good:#1C8F52;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#E7EBEA;color:var(--ink)}
+body{font-family:"Manrope","Segoe UI",system-ui,sans-serif;font-size:11.4pt;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Archivo","Segoe UI",system-ui,sans-serif;margin:0;letter-spacing:-.015em;text-wrap:balance}
+
+.bar{
+  position:sticky;top:0;z-index:10;background:#11181B;color:#fff;
+  padding:11px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:13px;
+}
+.bar b{font-family:"Archivo",sans-serif}
+.bar button{
+  margin-left:auto;background:#fff;color:#11181B;border:0;border-radius:8px;
+  padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;
+}
+.bar span{color:#9FB3B1}
+
+.page{
+  width:210mm;min-height:297mm;margin:16px auto;background:#fff;
+  padding:16mm 15mm;box-shadow:0 10px 40px -14px rgba(0,0,0,.45);
+  position:relative;display:flex;flex-direction:column;
+}
+
+.head{display:flex;align-items:flex-start;gap:14px;border-bottom:2.5px solid var(--ink);padding-bottom:11px}
+.logo{
+  width:44px;height:44px;border-radius:10px;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-family:"Archivo",sans-serif;font-weight:800;font-size:17px;flex:none;
+}
+.head h1{font-size:21pt;font-weight:800;line-height:1.05}
+.head .sub{font-size:10pt;color:var(--muted);margin-top:2px}
+.head .date{margin-left:auto;text-align:right;font-size:9pt;color:var(--muted);flex:none}
+
+h2.sec{
+  font-size:13pt;font-weight:800;margin:18px 0 9px;padding-bottom:5px;
+  border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:9px;
+}
+h2.sec small{font-size:9pt;font-weight:600;color:var(--muted);font-family:"Manrope",sans-serif;margin-left:auto}
+
+table{width:100%;border-collapse:collapse;font-size:10.2pt}
+th{
+  text-align:left;font-family:"Archivo",sans-serif;font-size:8.6pt;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;color:var(--muted);
+  padding:0 8px 6px 0;border-bottom:1px solid var(--line);
+}
+td{padding:7px 8px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.y{font-weight:700;color:var(--good);white-space:nowrap}
+td.n{font-weight:700;color:var(--low);white-space:nowrap}
+td.q{font-weight:700;color:var(--muted);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.vs div{border:1.5px solid var(--line-2);border-radius:9px;padding:11px 13px}
+.vs div.me{border-color:var(--accent);background:var(--accent-soft)}
+.vs h4{font-size:11pt;font-weight:800}
+.vs .big{font-family:"Archivo",sans-serif;font-size:25pt;font-weight:800;line-height:1;margin:7px 0 2px}
+.vs .lab{font-size:8.6pt;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.vs ul{margin:9px 0 0;padding-left:16px;font-size:9.6pt;color:var(--ink-2)}
+.vs li{margin-bottom:3px}
+
+ol.leaks{margin:0;padding-left:0;list-style:none;counter-reset:l}
+ol.leaks li{
+  counter-increment:l;display:flex;gap:11px;padding:8px 0;border-bottom:1px dotted var(--line);
+}
+ol.leaks li:last-child{border-bottom:0}
+ol.leaks li::before{
+  content:counter(l);flex:none;width:22px;height:22px;border-radius:6px;
+  background:var(--ink);color:#fff;display:grid;place-items:center;
+  font-family:"Archivo",sans-serif;font-size:9.5pt;font-weight:700;margin-top:1px;
+}
+ol.leaks b{display:block;font-family:"Archivo",sans-serif;font-size:10.6pt}
+ol.leaks span{display:block;font-size:9.6pt;color:var(--ink-2)}
+
+.box{
+  border:1.5px solid var(--accent);border-left-width:5px;border-radius:8px;
+  background:var(--accent-soft);padding:12px 14px;margin-top:14px;
+}
+.box b{font-family:"Archivo",sans-serif;font-size:11pt}
+.box p{margin:5px 0 0;font-size:10pt;color:var(--ink-2)}
+
+.foot{
+  margin-top:auto;padding-top:12px;border-top:1px solid var(--line);
+  display:flex;gap:12px;align-items:flex-end;font-size:9pt;color:var(--muted);
+}
+.foot .who{font-size:10pt;color:var(--ink)}
+.foot .who b{font-family:"Archivo",sans-serif;font-size:11pt;display:block}
+.fill{border-bottom:1.5px dotted var(--line-2);display:inline-block;min-width:130px}
+
+ol.promise{margin:0;padding-left:0;list-style:none;counter-reset:p}
+ol.promise li{
+  counter-increment:p;display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);
+}
+ol.promise li:last-child{border-bottom:0}
+ol.promise li::before{
+  content:counter(p);flex:none;width:26px;height:26px;border-radius:7px;
+  background:var(--accent);color:#fff;display:grid;place-items:center;
+  font-family:"Archivo",sans-serif;font-size:11pt;font-weight:800;
+}
+ol.promise b{display:block;font-family:"Archivo",sans-serif;font-size:11.4pt;margin-bottom:2px}
+ol.promise span{display:block;font-size:10pt;color:var(--ink-2)}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:6px}
+.steps div{border:1.5px solid var(--line-2);border-radius:9px;padding:11px}
+.steps .n{
+  font-family:"Archivo",sans-serif;font-size:8.6pt;font-weight:700;color:var(--accent);
+  text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;
+}
+.steps b{display:block;font-family:"Archivo",sans-serif;font-size:10.4pt}
+.steps span{display:block;font-size:9.4pt;color:var(--ink-2);margin-top:2px}
+
+/* sayfa 3 - cep notu */
+.mine{background:#FFFBEC}
+.mine .head{border-bottom-color:#B07A00}
+.mine .logo{background:#B07A00}
+.warn{
+  background:#B07A00;color:#fff;font-family:"Archivo",sans-serif;font-weight:700;
+  font-size:9.4pt;padding:7px 12px;border-radius:7px;margin-bottom:12px;
+  display:flex;gap:8px;align-items:center;
+}
+.qs{margin:0;padding-left:0;list-style:none}
+.qs li{padding:7px 0;border-bottom:1px dotted var(--line);font-size:10.2pt}
+.qs li:last-child{border-bottom:0}
+.qs b{font-family:"Archivo",sans-serif}
+.qs em{font-style:normal;color:var(--muted);font-size:9pt;display:block;margin-top:1px}
+.obj td{font-size:9.8pt}
+.obj td:first-child{width:38%;font-weight:700;font-family:"Archivo",sans-serif;color:var(--low)}
+
+@media print{
+  html,body{background:#fff}
+  .bar{display:none}
+  .page{width:auto;min-height:auto;margin:0;padding:0;box-shadow:none;page-break-after:always}
+  .page:last-child{page-break-after:auto}
+  .mine{background:#fff}
+}
+@page{ size:A4; margin:14mm; }
+
+@media(max-width:840px){
+  .page{width:auto;min-height:auto;padding:18px}
+  .vs,.steps{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <b>Ekin Teknik · Durum Raporu</b>
+  <span>Ekin Teknik icin hazirlanmistir</span>
+  <button onclick="window.print()">Yazdır / PDF kaydet</button>
+</div>
+
+<!-- ============ SAYFA 1 ============ -->
+<div class="page">
+  <div class="head">
+    <div class="logo">ET</div>
+    <div>
+      <h1>Dijital Durum Raporu</h1>
+      <div class="sub">EKİN TEKNİK · İzmit / Kocaeli · Sıfır &amp; ikinci el · Garantili teknik servis</div>
+    </div>
+    <div class="date">Hazırlanma<br><b id="today">—</b></div>
+  </div>
+
+  <h2 class="sec">Şu an dijitalde nerede duruyorsun <small>dışarıdan bakınca görünen</small></h2>
+  <table>
+    <thead><tr><th style="width:40%">Kanal</th><th style="width:16%">Durum</th><th>Not</th></tr></thead>
+    <tbody>
+      <tr><td><b>Instagram</b> @ekinteknikgsm</td><td class="y">VAR</td><td>607 takipçi. Profildeki tek bağlantı sahibinden'e gidiyor.</td></tr>
+      <tr><td><b>sahibinden.com</b> mağaza</td><td class="y">VAR</td><td>Aktif ilanlar mevcut. Aylık ücretli ve ilanların yanında rakip ilanları duruyor.</td></tr>
+      <tr><td><b>Kendi vitrinin</b></td><td class="n">YOK</td><td>Müşterinin elindeki stoğu görebileceği, sana ait bir sayfa yok.</td></tr>
+      <tr><td><b>Teknik servis görünürlüğü</b></td><td class="n">YOK</td><td>Instagram profilinde yazıyor, ama arayan müşterinin bulabileceği hiçbir yerde yok.</td></tr>
+      <tr><td><b>Müşteri listesi</b></td><td class="n">YOK</td><td>Gelen müşterinin numarası kalmıyor. Tekrar ulaşma imkânı yok.</td></tr>
+      <tr><td><b>Google İşletme Profili</b></td><td class="q">BAKILACAK</td><td>Birlikte kontrol edeceğiz: kayıt var mı, sahiplenilmiş mi, kaç yorumu var.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec">Yandaki dükkanla farkın <small>aynı ilçe, aynı hizmetler</small></h2>
+  <div class="vs">
+    <div class="me">
+      <div class="lab">Sen</div>
+      <h4>EKİN TEKNİK</h4>
+      <div class="big">607</div>
+      <div class="lab">Instagram takipçisi</div>
+      <ul>
+        <li>Sıfır + ikinci el alım-satım</li>
+        <li>Garantili teknik servis</li>
+        <li>Kredi kartına taksit</li>
+        <li>Kendi vitrini <b>yok</b></li>
+      </ul>
+    </div>
+    <div>
+      <div class="lab">İzmit'teki rakip</div>
+      <h4>Novomobil</h4>
+      <div class="big">13.700</div>
+      <div class="lab">Instagram takipçisi</div>
+      <ul>
+        <li>Sıfır + ikinci el alım-satım</li>
+        <li>Garantili teknik servis</li>
+        <li>Kredi kartına taksit</li>
+        <li>Kendi vitrini <b>yok</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box">
+    <b>Buradan çıkan sonuç</b>
+    <p>Takipçi yarışında 22 kat geridesin ve o yarışa girmek pahalı, yavaş ve belirsiz. Ama iki dükkan da aynı eksiği taşıyor: <b>ikinizin de kendi vitrini ve kendi müşteri listesi yok.</b> İkiniz de müşteriyi sahibinden'e gönderiyorsunuz. Burası boş bir alan, ve kapatılması takipçi kazanmaktan çok daha hızlı.</p>
+  </div>
+
+  <h2 class="sec">Günde kaçan müşteri <small>dükkana gelen ama geri dönmeyen</small></h2>
+  <ol class="leaks">
+    <li><div><b>Kepenk kapalıyken yazan</b><span>Günün 16 saati kapalısın. O saatte yazan ya da bakan müşteri, sabaha kadar başka yerden alıyor.</span></div></li>
+    <li><div><b>Fiyat sordu, "bakayım" deyip çıktı</b><span>Çıktığı an cihazı hatırlatacak hiçbir şey yok. Aklına geldiğinde sana değil, karşısına ilk çıkana bakıyor.</span></div></li>
+    <li><div><b>Aradığı model elinde yoktu</b><span>Bu müşteri tamamen kayıp. Cihaz iki gün sonra eline geçse bile, haber verecek bir listen yok.</span></div></li>
+    <li><div><b>"Sonra dönerim" dedi, dönmedi</b><span>Numarası sende kalmadığı için hatırlatma yapamıyorsun.</span></div></li>
+    <li><div><b>Telefonunu satmak isteyen</b><span>Sana mal lazım. Takası zaten yapıyorsun ama takas arayan müşteri seni bulacak bir yer bulamıyor.</span></div></li>
+  </ol>
+
+  <div class="foot">
+    <div class="who">
+      Hazırlayan<b>Ahmet <span class="fill">&nbsp;</span></b>
+      <span class="fill">&nbsp;</span>
+    </div>
+    <div style="margin-left:auto;text-align:right">
+      Bu rapor ücretsizdir.<br>Hiçbir taahhüt içermez.
+    </div>
+  </div>
+</div>
+
+<!-- ============ SAYFA 2 ============ -->
+<div class="page">
+  <div class="head">
+    <div class="logo">ET</div>
+    <div>
+      <h1>Ne yapacağım</h1>
+      <div class="sub">Altı madde. Hepsi ölçülebilir, hiçbiri tahmin değil.</div>
+    </div>
+  </div>
+
+  <ol class="promise">
+    <li><div><b>Kepenk kapalıyken vitrin açık kalacak</b><span>Kepenge QR kod asıyoruz. Tarayan, elindeki cihazları görüyor ve oradan WhatsApp'a yazıyor. Kaç kişinin taradığını sayıyoruz.</span></div></li>
+    <li><div><b>Aynı soruya günde elli kez cevap vermeyeceksin</b><span>Adres, çalışma saati, garanti, taksit, takas gibi sorular vitrine ve WhatsApp hazır cevaplarına giriyor. Sana sadece ciddi müşteri yazıyor.</span></div></li>
+    <li><div><b>Çıkan müşteri kaybolmayacak</b><span>Her cihazın yanında QR'lı etiket oluyor. Müşteri okuttuğunda cihazın sayfası onun telefonunda kalıyor. Çıkarken cihaz cebinde değil ama cihazın sayfası cebinde.</span></div></li>
+    <li><div><b>Aradığı model yoksa listeye girecek</b><span>Müşteri modelini ve bütçesini bırakıyor. O cihaz eline geçtiği gün tek tuşla hepsine WhatsApp gidiyor.</span></div></li>
+    <li><div><b>Cihazı olan sana gelecek</b><span>Takas formu, telefonunu satmak isteyeni sana yönlendiriyor. Satış tarafını değil, <b>mal bulma</b> tarafını besliyor.</span></div></li>
+    <li><div><b>Google'da görüneceksin ve yorum toplayacaksın</b><span>İşletme profilin düzenleniyor, tezgaha yorum QR'ı konuyor. Yorum sayısı haritadaki sıranı değiştiren tek şey ve maliyeti yok.</span></div></li>
+  </ol>
+
+  <div class="box">
+    <b>Sana satış garantisi vermiyorum</b>
+    <p>Kimse veremez, veren de doğruyu söylemiyordur. Ben sana <b>sayı</b> vereceğim: ay sonunda kaç kişi QR'ı taradı, kaç kişi WhatsApp'tan yazdı, kaç cihaz rezerve edildi, kaç kişi bekleme listesine girdi. Hepsini tek sayfada göreceksin. İşe yaramadığını düşünürsen bırakırsın.</p>
+  </div>
+
+  <h2 class="sec">Önerdiğim sıra <small>küçük başlayıp ölçelim</small></h2>
+  <div class="steps">
+    <div>
+      <div class="n">Adım 1 · bedava</div>
+      <b>5 günlük ölçüm</b>
+      <span>Kepenge QR asıyoruz, kaç kişi tarıyor sayıyoruz. Para yok, taahhüt yok.</span>
+    </div>
+    <div>
+      <div class="n">Adım 2</div>
+      <b>Kurulum</b>
+      <span>WhatsApp düzeni, Google profili, yorum kiti, kepenk vitrini. Birkaç gün.</span>
+    </div>
+    <div>
+      <div class="n">Adım 3</div>
+      <b>İkinci el vitrini</b>
+      <span>Cihaz sayfaları, bekleme listesi, takas formu, senin kullanacağın panel.</span>
+    </div>
+  </div>
+
+  <div class="box" style="border-color:var(--line-2);background:#F4F7F6">
+    <b>Önce şunları netleştirelim</b>
+    <p>
+      1. İkinci ele kaç gün değişim garantisi veriyorsun?&nbsp; &nbsp;
+      2. Çalışma saatlerin ve pazar durumu?&nbsp; &nbsp;
+      3. İkinci elde fiyat yazalım mı, yoksa "güncel fiyat için WhatsApp" mı?&nbsp; &nbsp;
+      4. Yeni gelen cihazı sisteme kim girecek?&nbsp; &nbsp;
+      5. Google İşletme Profilin var mı, kimin hesabında?&nbsp; &nbsp;
+      6. Tabelada tam olarak ne yazıyor?
+    </p>
+  </div>
+
+  <div class="foot">
+    <div class="who">
+      Ahmet <span class="fill">&nbsp;</span><br>
+      <span class="fill">&nbsp;</span>
+    </div>
+    <div style="margin-left:auto;text-align:right">
+      Demo vitrin hazır.<br>Telefonumdan gösterebilirim.
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById("today").textContent =
+  new Date().toLocaleDateString("tr-TR", {day:"2-digit", month:"long", year:"numeric"});
+</script>
+</body>
+</html>

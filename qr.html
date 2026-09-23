@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ekin Teknik QR Seti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Manrope:wght@500;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+:root{
+  --ink:#0E1618; --muted:#6B7C80; --line:#C9D5D2; --accent:#0C6B66;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#E7EBEA;color:var(--ink)}
+body{font-family:"Manrope","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,b,strong{font-family:"Archivo","Segoe UI",system-ui,sans-serif;letter-spacing:-.02em}
+
+.bar{
+  position:sticky;top:0;z-index:10;background:#0E1618;color:#fff;
+  padding:11px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:13px;
+}
+.bar b{font-family:"Archivo",sans-serif}
+.bar span{color:#9FB3B1}
+.bar button{
+  margin-left:auto;background:#fff;color:#0E1618;border:0;border-radius:8px;
+  padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;
+}
+
+.page{
+  width:210mm;height:297mm;margin:16px auto;background:#fff;
+  padding:12mm;box-shadow:0 10px 40px -14px rgba(0,0,0,.45);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+
+/* ---------- KEPENK POSTERİ ---------- */
+.poster{align-items:center;text-align:center;justify-content:space-between;padding:14mm 12mm}
+.poster .top-id{
+  display:flex;align-items:center;gap:10px;justify-content:center;
+  border-bottom:3px solid var(--ink);padding-bottom:8px;width:100%;
+}
+.poster .logo{
+  width:52px;height:52px;border-radius:12px;background:var(--ink);color:#fff;
+  display:grid;place-items:center;font-family:"Archivo",sans-serif;font-weight:900;font-size:20px;
+}
+.poster .top-id b{font-size:30px;font-weight:900;line-height:1}
+.poster .top-id span{display:block;font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+
+.poster h1{font-size:62px;font-weight:900;line-height:.94;margin:0}
+.poster h1 em{font-style:normal;display:block;color:var(--accent)}
+.poster .lead{font-size:19px;font-weight:600;color:#39494E;margin-top:10px;max-width:15cm}
+
+.qbox{
+  border:3px solid var(--ink);border-radius:18px;padding:14px;background:#fff;
+  display:grid;place-items:center;
+}
+.qbox svg,.qbox canvas{display:block;width:62mm;height:62mm}
+.qhint{font-size:16px;font-weight:700;margin-top:12px}
+.qhint span{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-top:2px}
+
+.telbig{
+  border-top:3px solid var(--ink);padding-top:12px;width:100%;
+}
+.telbig .lab{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.telbig .num{font-size:48px;font-weight:900;line-height:1.05;font-variant-numeric:tabular-nums}
+.telbig .adr{font-size:14px;font-weight:600;color:#39494E;margin-top:4px}
+
+/* ---------- ETİKETLER ---------- */
+.sheet-title{
+  font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.12em;margin-bottom:8px;display:flex;gap:10px;align-items:center;
+}
+.sheet-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.labels{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1}
+.label{
+  border:1px dashed var(--line);padding:5mm;display:flex;gap:4mm;align-items:flex-start;
+  min-height:0;
+}
+.label .lq{width:23mm;flex:none;display:grid;place-items:center}
+.label .lq svg,.label .lq canvas{width:23mm;height:23mm;display:block}
+.label .lm{flex:1;min-width:0;display:flex;flex-direction:column;height:100%}
+.label .brandline{
+  display:flex;align-items:center;gap:5px;font-size:9px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);padding-bottom:3px;
+}
+.label .brandline span{margin-left:auto;font-weight:700;letter-spacing:0;color:var(--accent);font-size:10px}
+.label .rows{margin-top:4px;font-size:9.5px;font-weight:600;color:#39494E;line-height:1.85}
+.label .rows i{font-style:normal;color:var(--muted);display:inline-block;width:52px}
+.label .rows u{text-decoration:none;border-bottom:1px dotted var(--line);display:inline-block;min-width:58px}
+.label .cta{
+  margin-top:auto;font-size:8.6px;font-weight:700;color:var(--accent);
+  border-top:1px solid var(--line);padding-top:3px;
+}
+
+/* ---------- TEZGAH KARTLARI ---------- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:6mm;flex:1;align-content:start}
+.card{
+  border:2px solid var(--ink);border-radius:14px;padding:8mm 7mm;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:4mm;
+}
+.card .eyebrow{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.card h3{font-size:22px;font-weight:900;line-height:1.1}
+.card p{margin:0;font-size:12.5px;font-weight:600;color:#39494E;line-height:1.4}
+.card .cq svg,.card .cq canvas{width:38mm;height:38mm;display:block}
+.card .foot{font-size:11px;font-weight:700;margin-top:auto}
+.card .foot span{display:block;font-size:10px;color:var(--muted);font-weight:600}
+
+.cutnote{
+  margin-top:6mm;font-size:10px;color:var(--muted);border-top:1px dashed var(--line);
+  padding-top:5px;line-height:1.5;
+}
+.cutnote b{color:var(--ink)}
+
+.fallback{
+  width:100%;height:100%;display:grid;place-items:center;text-align:center;
+  border:2px dashed var(--line);border-radius:8px;padding:6px;
+  font-size:8px;color:var(--muted);word-break:break-all;line-height:1.3;
+}
+
+@media print{
+  html,body{background:#fff}
+  .bar,.screen-only{display:none}
+  .page{width:auto;height:auto;min-height:0;margin:0;padding:0;box-shadow:none;page-break-after:always}
+  .page:last-child{page-break-after:auto}
+  .label{border-color:#BBB}
+}
+@page{ size:A4; margin:10mm; }
+
+@media(max-width:840px){
+  .page{width:auto;height:auto;padding:18px}
+  .labels,.cards{grid-template-columns:1fr}
+  .poster h1{font-size:40px}
+  .telbig .num{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <b>Ekin Teknik · QR Seti</b>
+  <span>3 sayfa · kepenk posteri + 8 cihaz etiketi + tezgah kartları</span>
+  <button onclick="window.print()">Yazdır / PDF kaydet</button>
+</div>
+
+<div class="screen-only" style="max-width:210mm;margin:14px auto 0;padding:12px 16px;background:#fff;border-radius:10px;font-size:13px;line-height:1.55;box-shadow:0 6px 24px -14px rgba(0,0,0,.4)">
+  <b style="font-family:Archivo,sans-serif">Baskı notu:</b> A4, düz beyaz kağıt yeter. Kepenk posterini <b>şeffaf poşet dosyaya</b> koy ya da laminat yaptır, yağmurda dağılmasın.
+  Etiket sayfasını biraz kalın kağıda (160 gr) bastırırsan tezgahta durur. Kepenk, bekleme listesi ve takas karekodlari <b>demo vitrine</b>; etiketler ve yorum karekodu WhatsApp ve Google'a gidiyor.
+</div>
+
+<!-- ============ SAYFA 1: KEPENK POSTERİ ============ -->
+<div class="page poster">
+  <div class="top-id">
+    <div class="logo">ET</div>
+    <div style="text-align:left">
+      <b>EKİN TEKNİK</b>
+      <span>İzmit · Kocaeli</span>
+    </div>
+  </div>
+
+  <div>
+    <h1>KAPALIYIZ<em>VİTRİN AÇIK</em></h1>
+    <p class="lead">Elimizdeki sıfır ve ikinci el telefonlara şimdi bak, mesajını at. <b>Sabah açılışta ilk sana dönüyoruz.</b></p>
+  </div>
+
+  <div>
+    <div class="qbox"><div id="q-kepenk"></div></div>
+    <div class="qhint">Telefonunun kamerasını tut
+      <span>Elimizdeki telefonlar karşına gelir</span>
+    </div>
+  </div>
+
+  <div class="telbig">
+    <div class="lab">Yazabilir veya arayabilirsin</div>
+    <div class="num">0532 419 92 41</div>
+    <div class="adr">Sıfır &amp; ikinci el alım-satım · Garantili teknik servis · Kredi kartına taksit</div>
+  </div>
+</div>
+
+<!-- ============ SAYFA 2: CİHAZ ETİKETLERİ ============ -->
+<div class="page">
+  <div class="sheet-title">Cihaz etiketleri · kes, cihazın yanına koy</div>
+  <div class="labels" id="labels"></div>
+  <div class="cutnote">
+    <b>Nasıl kullanılır:</b> Boşlukları kalemle doldur (model, hafıza, batarya, garanti). Müşteri karekodu okuttuğunda WhatsApp açılır ve
+    <b>mesajın içinde bu etiketin stok kodu yazılı gelir</b> — hangi cihazı sorduğunu sana yazmadan bilirsin.
+    Cihaz satılınca etiketi al, yenisine geç. &nbsp;·&nbsp; Vitrin yayına girince bu karekodlar doğrudan cihazın kendi sayfasını açacak.
+  </div>
+</div>
+
+<!-- ============ SAYFA 3: TEZGAH KARTLARI ============ -->
+<div class="page">
+  <div class="sheet-title">Tezgah kartları · kes, kasanın yanına koy</div>
+  <div class="cards">
+    <div class="card">
+      <div class="eyebrow">Satıştan sonra</div>
+      <h3>Memnun kaldınız mı?</h3>
+      <p>15 saniyenizi alır. Yorumunuz bizim gibi küçük dükkanlar için çok kıymetli.</p>
+      <div class="cq" id="q-yorum"></div>
+      <div class="foot">Google'da bizi değerlendirin<span>Karekodu okutmanız yeterli</span></div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Yeni gelenler</div>
+      <h3>Instagram'da takip et</h3>
+      <p>Yeni gelen cihazları ve kampanyaları ilk sen gör.</p>
+      <div class="cq" id="q-insta"></div>
+      <div class="foot">@ekinteknikgsm<span>Her yeni cihaz burada paylaşılıyor</span></div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Aradığını bulamadın mı?</div>
+      <h3>Gelince haber verelim</h3>
+      <p>Aradığın modeli ve bütçeni bırak. O cihaz elimize geçtiği gün ilk sana yazalım.</p>
+      <div class="cq" id="q-bekle"></div>
+      <div class="foot">Karekodu okut<span>Modelini ve bütçeni bırak, sana yazalım</span></div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">Telefonunu satmak mı istiyorsun?</div>
+      <h3>Takas &amp; yerinde alım</h3>
+      <p>Cihazını getir, tezgahta test edelim, kesin fiyatını hemen söyleyelim.</p>
+      <div class="cq" id="q-takas"></div>
+      <div class="foot">Karekodu okut<span>Modelini seç, değer aralığını gör</span></div>
+    </div>
+  </div>
+  <div class="cutnote">
+    <b>Not:</b> Yorum karekodu şu an Google Haritalar'da dükkanı arattırıyor.
+    İşletme profili sahiplenildikten sonra bunu <b>doğrudan "yorum yaz" ekranını açan</b> kısa bağlantıyla değiştireceğiz — tek adımda yorum bırakılır.
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var WA = "905324199241";
+var SITE = "https://ahmetmolla2002.github.io/ekin-teknik-demo/";
+var IG = "https://www.instagram.com/ekinteknikgsm/";
+var MAPS = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Ekin Teknik GSM İzmit");
+
+function wa(t){ return "https://wa.me/" + WA + "?text=" + encodeURIComponent(t); }
+
+function draw(el, text, px){
+  if(!el) return;
+  try{
+    if(typeof qrcode !== "function") throw new Error("kütüphane yok");
+    var q = qrcode(0, "M");
+    q.addData(text);
+    q.make();
+    el.innerHTML = q.createSvgTag({cellSize:4, margin:0, scalable:true});
+    var svg = el.querySelector("svg");
+    if(svg){ svg.removeAttribute("width"); svg.removeAttribute("height"); svg.style.width="100%"; svg.style.height="100%"; }
+  }catch(e){
+    el.innerHTML = '<div class="fallback">Karekod oluşturulamadı.<br>İnternete bağlanıp sayfayı yenile.<br><br>' + text + '</div>';
+  }
+}
+
+/* --- kepenk: mesaj kaynağı belli olsun, gelen mesajın kendisi sayaç olur --- */
+draw(document.getElementById("q-kepenk"), SITE);
+
+draw(document.getElementById("q-yorum"), MAPS);
+draw(document.getElementById("q-insta"), IG);
+draw(document.getElementById("q-bekle"), SITE + "#haberver");
+draw(document.getElementById("q-takas"), SITE + "#takas");
+
+/* --- 8 cihaz etiketi, her biri kendi stok koduyla --- */
+var KODLAR = ["A-101","A-102","A-103","A-104","A-105","A-106","A-107","A-108"];
+var box = document.getElementById("labels");
+KODLAR.forEach(function(kod){
+  var d = document.createElement("div");
+  d.className = "label";
+  d.innerHTML =
+      '<div class="lq" data-kod="' + kod + '"></div>'
+    + '<div class="lm">'
+    +   '<div class="brandline">EKİN TEKNİK <span>' + kod + '</span></div>'
+    +   '<div class="rows">'
+    +     '<div><i>Model</i><u>&nbsp;</u></div>'
+    +     '<div><i>Hafıza</i><u>&nbsp;</u> &nbsp; <i style="width:auto">Renk</i> <u style="min-width:34px">&nbsp;</u></div>'
+    +     '<div><i>Batarya</i><u style="min-width:26px">&nbsp;</u> % &nbsp; <i style="width:auto">Durum</i> <u style="min-width:34px">&nbsp;</u></div>'
+    +     '<div><i>Garanti</i><u style="min-width:26px">&nbsp;</u> gün</div>'
+    +   '</div>'
+    +   '<div class="cta">Karekodu okut → bu cihazı WhatsApp\'tan sor</div>'
+    + '</div>';
+  box.appendChild(d);
+  draw(d.querySelector(".lq"),
+    wa("Merhaba, vitrindeki " + kod + " kodlu cihaz için bilgi almak istiyorum."));
+});
+})();
+</script>
+</body>
+</html>
