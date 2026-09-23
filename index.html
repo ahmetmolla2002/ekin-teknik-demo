@@ -1,0 +1,1231 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Ekin Teknik Vitrin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --ground:#F2F5F4;
+  --surface:#FFFFFF;
+  --surface-2:#E9EEED;
+  --ink:#0E1618;
+  --ink-2:#31454A;
+  --muted:#61777C;
+  --line:#D8E2E0;
+  --line-2:#C3D2CF;
+  --accent:#0C6B66;
+  --accent-ink:#08504C;
+  --accent-soft:#DEEDEB;
+  --wa:#1FA855;
+  --wa-ink:#157A3D;
+  --good:#1C8F52;
+  --mid:#B07A00;
+  --low:#B4453A;
+  --shadow:0 1px 2px rgba(14,22,24,.05), 0 8px 24px -12px rgba(14,22,24,.18);
+  --shadow-lift:0 2px 4px rgba(14,22,24,.06), 0 18px 40px -16px rgba(14,22,24,.28);
+  --r:14px;
+  --r-sm:9px;
+  --maxw:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --ground:#0B1113;
+    --surface:#131C1E;
+    --surface-2:#1B2629;
+    --ink:#E9F1EF;
+    --ink-2:#B4C6C6;
+    --muted:#8AA0A2;
+    --line:#263336;
+    --line-2:#324246;
+    --accent:#37B3AC;
+    --accent-ink:#5FCBC4;
+    --accent-soft:#12312F;
+    --wa:#2DBE68;
+    --wa-ink:#48D17E;
+    --good:#34B26B;
+    --mid:#D3A02A;
+    --low:#D46A5D;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+    --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 20px 46px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --ground:#0B1113; --surface:#131C1E; --surface-2:#1B2629;
+  --ink:#E9F1EF; --ink-2:#B4C6C6; --muted:#8AA0A2;
+  --line:#263336; --line-2:#324246;
+  --accent:#37B3AC; --accent-ink:#5FCBC4; --accent-soft:#12312F;
+  --wa:#2DBE68; --wa-ink:#48D17E;
+  --good:#34B26B; --mid:#D3A02A; --low:#D46A5D;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 20px 46px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:76px;
+}
+@media(min-width:760px){ body{padding-bottom:0} }
+img{max-width:100%}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:"Archivo","Segoe UI",system-ui,sans-serif;margin:0;text-wrap:balance;letter-spacing:-.018em}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:16px}
+.tnum{font-variant-numeric:tabular-nums}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- header ---------- */
+.top{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:60;
+  background:color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.top-in{display:flex;align-items:center;gap:12px;padding-block:9px}
+.brand{display:flex;align-items:center;gap:9px;margin-right:auto;min-width:0}
+.mark{
+  width:34px;height:34px;flex:none;border-radius:9px;
+  background:linear-gradient(150deg,var(--accent),var(--accent-ink));
+  color:#fff;display:grid;place-items:center;
+  font-family:"Archivo",sans-serif;font-weight:800;font-size:15px;letter-spacing:-.04em;
+}
+.brand b{display:block;font-family:"Archivo",sans-serif;font-weight:800;font-size:15px;letter-spacing:-.02em;line-height:1.15}
+.brand span{display:block;font-size:11.5px;color:var(--muted);line-height:1.2}
+.demochip{
+  font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--accent-ink);background:var(--accent-soft);
+  padding:3px 7px;border-radius:5px;border:1px solid var(--line-2);flex:none;
+}
+.top-acts{display:flex;gap:7px;flex:none}
+.ibtn{
+  display:grid;place-items:center;width:38px;height:38px;border-radius:9px;
+  border:1px solid var(--line-2);background:var(--surface);cursor:pointer;
+  text-decoration:none;transition:border-color .15s, transform .12s;
+}
+.ibtn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.ibtn svg{width:19px;height:19px}
+.ibtn.wa{background:var(--wa);border-color:var(--wa);color:#fff}
+
+/* ---------- hero ---------- */
+.hero{padding-block:26px 8px}
+.status{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 13px 6px 10px;border-radius:99px;
+  border:1px solid var(--line-2);background:var(--surface);
+  font-size:13px;font-weight:600;box-shadow:var(--shadow);
+}
+.dot{width:8px;height:8px;border-radius:99px;flex:none}
+.dot.on{background:var(--good);box-shadow:0 0 0 3px color-mix(in srgb,var(--good) 22%,transparent)}
+.dot.off{background:var(--low);box-shadow:0 0 0 3px color-mix(in srgb,var(--low) 22%,transparent)}
+.status small{color:var(--muted);font-weight:500}
+.hero h1{font-size:clamp(29px,7.4vw,46px);font-weight:800;line-height:1.04;margin-top:16px;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:var(--ink-2);max-width:46ch;margin:12px 0 0;font-size:15.5px}
+.navgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
+@media(min-width:720px){.navgrid{grid-template-columns:repeat(4,1fr)}}
+.navcard{
+  display:flex;flex-direction:column;gap:5px;padding:15px 14px 14px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  text-decoration:none;box-shadow:var(--shadow);cursor:pointer;text-align:left;
+  transition:transform .14s, box-shadow .14s, border-color .14s;
+}
+.navcard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);border-color:var(--line-2)}
+.navcard svg{width:22px;height:22px;color:var(--accent)}
+.navcard b{font-family:"Archivo",sans-serif;font-size:14.5px;font-weight:700}
+.navcard span{font-size:12px;color:var(--muted);line-height:1.35}
+
+/* ---------- trust strip ---------- */
+.trust{
+  margin-top:24px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;
+}
+@media(min-width:720px){.trust{grid-template-columns:repeat(4,1fr)}}
+.trust div{
+  padding:13px 14px;display:flex;gap:9px;align-items:flex-start;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.trust div:nth-child(2n){border-right:0}
+@media(min-width:720px){
+  .trust div{border-bottom:0}
+  .trust div:nth-child(2n){border-right:1px solid var(--line)}
+  .trust div:last-child{border-right:0}
+}
+.trust div:nth-last-child(-n+2){border-bottom:0}
+.trust svg{width:17px;height:17px;flex:none;margin-top:1px;color:var(--accent)}
+.trust b{display:block;font-family:"Archivo",sans-serif;font-size:12.5px;font-weight:700;line-height:1.25}
+.trust span{display:block;font-size:11.5px;color:var(--muted);line-height:1.3}
+
+/* ---------- sections ---------- */
+section{padding-block:32px}
+.shead{display:flex;align-items:flex-end;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.shead h2{font-size:clamp(20px,4.6vw,26px);font-weight:800}
+.shead .count{
+  font-size:12.5px;color:var(--muted);font-weight:600;
+  padding-bottom:3px;
+}
+.shead .count b{color:var(--accent);font-family:"Archivo",sans-serif;font-weight:800}
+.kicker{
+  font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px;
+}
+
+/* ---------- device cards ---------- */
+.grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:620px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.grid.three{grid-template-columns:repeat(3,1fr)}}
+
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .14s, box-shadow .14s;
+}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+.card-top{display:flex;gap:14px;padding:14px 14px 0}
+.thumb{
+  width:84px;flex:none;border-radius:10px;background:var(--surface-2);
+  display:grid;place-items:center;padding:8px;overflow:hidden;
+  border:1px solid var(--line);
+}
+.thumb img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+.thumb svg{width:100%;height:auto;display:block}
+.card-head{flex:1;min-width:0}
+.badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px}
+.bdg{
+  font-size:10.5px;font-weight:700;letter-spacing:.02em;padding:2.5px 7px;border-radius:5px;
+  border:1px solid var(--line-2);color:var(--ink-2);background:var(--surface-2);
+}
+.bdg.ok{color:var(--good);border-color:color-mix(in srgb,var(--good) 32%,transparent);background:color-mix(in srgb,var(--good) 10%,transparent)}
+.bdg.acc{color:var(--accent-ink);border-color:color-mix(in srgb,var(--accent) 34%,transparent);background:var(--accent-soft)}
+.card-head h3{font-size:16px;font-weight:700;line-height:1.2}
+.spec{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+.batt{padding:12px 14px 0}
+.batt-row{display:flex;align-items:center;gap:9px;margin-bottom:5px}
+.batt-label{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.batt-val{margin-left:auto;font-size:13px;font-weight:800;font-family:"Archivo",sans-serif}
+.bar{height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;border-radius:99px}
+
+.card-foot{
+  margin-top:auto;padding:13px 14px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.price{font-family:"Archivo",sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.price small{font-size:11.5px;color:var(--muted);font-weight:600;display:block;letter-spacing:0}
+.askwa{
+  margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+  background:var(--wa);color:#fff;border:0;border-radius:9px;
+  padding:9px 13px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;
+  transition:filter .14s, transform .12s;
+}
+.askwa:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.askwa svg{width:15px;height:15px}
+.stok{
+  width:100%;font-size:11px;color:var(--muted);font-weight:600;
+  border-top:1px dashed var(--line);padding-top:9px;margin-top:2px;
+  display:flex;justify-content:space-between;gap:8px;
+}
+.stok a{color:var(--accent);text-decoration:none;font-weight:700;cursor:pointer}
+
+/* accessories */
+.acc-grid{display:grid;gap:10px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:620px){.acc-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:980px){.acc-grid{grid-template-columns:repeat(4,1fr)}}
+.acard{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:13px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px;
+  transition:transform .14s,box-shadow .14s;
+}
+.acard:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+.acard .ai{width:30px;height:30px;color:var(--accent);margin-bottom:4px}
+.acard b{font-family:"Archivo",sans-serif;font-size:13.5px;font-weight:700;line-height:1.25}
+.acard span{font-size:11.5px;color:var(--muted)}
+.acard .ap{margin-top:auto;padding-top:9px;font-family:"Archivo",sans-serif;font-weight:800;font-size:15px}
+
+/* ---------- panels / forms ---------- */
+.panel{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:18px;
+}
+.panel h3{font-size:18px;font-weight:800;margin-bottom:5px}
+.panel .sub{color:var(--muted);font-size:13.5px;margin-bottom:16px;max-width:52ch}
+.fields{display:grid;gap:11px;grid-template-columns:1fr}
+@media(min-width:620px){.fields.two{grid-template-columns:1fr 1fr}.fields.three{grid-template-columns:repeat(3,1fr)}}
+label{display:block;font-size:12px;font-weight:700;color:var(--ink-2);margin-bottom:5px;letter-spacing:.01em}
+input[type=text],input[type=tel],input[type=number],select,textarea{
+  width:100%;padding:10px 11px;border-radius:var(--r-sm);
+  border:1px solid var(--line-2);background:var(--ground);
+  font-size:14.5px;transition:border-color .14s, background .14s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);background:var(--surface);outline:none}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 17px;border-radius:var(--r-sm);border:1px solid transparent;
+  background:var(--accent);color:#fff;font-weight:700;font-size:14px;cursor:pointer;
+  text-decoration:none;transition:filter .14s,transform .12s;
+}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn.ghost{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+.btn.wa{background:var(--wa)}
+.btn.sm{padding:8px 12px;font-size:13px}
+.btn svg{width:16px;height:16px}
+.result{
+  margin-top:15px;padding:14px;border-radius:var(--r-sm);
+  background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+}
+.result b{font-family:"Archivo",sans-serif;font-size:21px;font-weight:800;display:block;color:var(--accent-ink)}
+.result span{font-size:12.5px;color:var(--ink-2)}
+
+/* servis */
+.serv{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:620px){.serv{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.serv{grid-template-columns:repeat(3,1fr)}}
+.sitem{
+  display:flex;gap:11px;align-items:flex-start;padding:13px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);
+}
+.sitem svg{width:19px;height:19px;color:var(--accent);flex:none;margin-top:2px}
+.sitem b{display:block;font-family:"Archivo",sans-serif;font-size:13.5px;font-weight:700}
+.sitem span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+
+/* sss */
+.faq{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:last-child{border-bottom:0}
+.faq summary{
+  padding:13px 15px;cursor:pointer;font-weight:700;font-size:14px;
+  list-style:none;display:flex;align-items:center;gap:10px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";margin-left:auto;color:var(--accent);font-size:19px;font-weight:700;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin:0;padding:0 15px 14px;color:var(--ink-2);font-size:13.5px;max-width:64ch}
+
+/* konum */
+.loc{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:760px){.loc{grid-template-columns:1.1fr .9fr}}
+.hours{display:flex;flex-direction:column;gap:0}
+.hours div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.hours div:last-child{border-bottom:0}
+.hours span{color:var(--muted);font-weight:600}
+.hours div.now{color:var(--accent);font-weight:700}
+.hours div.now span{color:var(--accent)}
+
+/* footer */
+footer{border-top:1px solid var(--line);margin-top:26px;padding-block:22px 30px;color:var(--muted);font-size:12.5px}
+footer .fin{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--accent);text-decoration:none;font-weight:600}
+
+/* sticky mobile bar */
+.mbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);
+  backdrop-filter:blur(12px) saturate(1.4);
+  border-top:1px solid var(--line);
+  padding:9px 12px;
+  padding-bottom:calc(9px + env(safe-area-inset-bottom,0px));
+}
+@media(min-width:760px){.mbar{display:none}}
+.mbar a{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:11px 6px;border-radius:10px;font-size:13.5px;font-weight:700;
+  text-decoration:none;border:1px solid var(--line-2);background:var(--surface);
+}
+.mbar a.wa{background:var(--wa);color:#fff;border-color:var(--wa)}
+.mbar svg{width:16px;height:16px}
+
+/* ---------- modal ---------- */
+.ov{
+  position:fixed;inset:0;z-index:90;background:rgba(6,14,16,.55);
+  backdrop-filter:blur(3px);display:grid;place-items:center;padding:14px;
+}
+.sheet{
+  background:var(--surface);border:1px solid var(--line-2);border-radius:16px;
+  width:min(660px,100%);max-height:88vh;overflow:auto;box-shadow:var(--shadow-lift);
+}
+.sheet-h{
+  position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--line);
+  padding:15px 17px;display:flex;align-items:center;gap:12px;z-index:2;
+}
+.sheet-h h3{font-size:16.5px;font-weight:800;margin-right:auto}
+.x{width:32px;height:32px;border-radius:8px;border:1px solid var(--line-2);background:var(--ground);cursor:pointer;font-size:17px;line-height:1;flex:none}
+.sheet-b{padding:17px}
+
+/* admin */
+.adm-list{display:flex;flex-direction:column;gap:8px}
+.adm-row{
+  display:flex;gap:11px;align-items:center;padding:10px;border-radius:var(--r-sm);
+  border:1px solid var(--line);background:var(--ground);
+}
+.adm-row .t{width:38px;height:46px;flex:none;border-radius:6px;background:var(--surface-2);display:grid;place-items:center;padding:4px;overflow:hidden;border:1px solid var(--line)}
+.adm-row .t img{width:100%;height:100%;object-fit:cover;border-radius:3px}
+.adm-row .m{flex:1;min-width:0}
+.adm-row b{display:block;font-size:13.5px;font-family:"Archivo",sans-serif;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.adm-row span{font-size:11.5px;color:var(--muted)}
+.adm-row.sold{opacity:.5}
+.sold-btn{
+  flex:none;padding:8px 11px;border-radius:8px;border:1px solid var(--line-2);
+  background:var(--surface);font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;
+}
+.sold-btn.is{background:var(--low);border-color:var(--low);color:#fff}
+.tabs{display:flex;gap:6px;margin-bottom:15px;flex-wrap:wrap}
+.tab{
+  padding:8px 13px;border-radius:99px;border:1px solid var(--line-2);
+  background:var(--ground);font-size:13px;font-weight:700;cursor:pointer;
+}
+.tab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.lead{padding:11px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--ground);font-size:13px;margin-bottom:8px}
+.lead b{font-family:"Archivo",sans-serif}
+.lead span{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+.empty{padding:26px 14px;text-align:center;color:var(--muted);font-size:13.5px}
+.photo-in{
+  display:flex;align-items:center;gap:10px;padding:11px;border:1px dashed var(--line-2);
+  border-radius:var(--r-sm);background:var(--ground);cursor:pointer;font-size:13px;font-weight:600;color:var(--ink-2);
+}
+.photo-in svg{width:19px;height:19px;color:var(--accent);flex:none}
+.photo-prev{width:44px;height:52px;border-radius:6px;object-fit:cover;border:1px solid var(--line)}
+.note{
+  font-size:12px;color:var(--muted);background:var(--ground);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:6px;padding:10px 12px;margin-top:14px;line-height:1.45;
+}
+.admtrig{
+  position:fixed;right:12px;bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:65;
+  width:44px;height:44px;border-radius:12px;border:1px solid var(--line-2);
+  background:var(--surface);box-shadow:var(--shadow-lift);cursor:pointer;
+  display:grid;place-items:center;
+}
+@media(min-width:760px){.admtrig{bottom:16px}}
+.admtrig svg{width:20px;height:20px;color:var(--accent)}
+.toast{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));
+  z-index:95;background:var(--ink);color:var(--ground);padding:11px 17px;border-radius:10px;
+  font-size:13.5px;font-weight:600;box-shadow:var(--shadow-lift);max-width:min(420px,92vw);text-align:center;
+}
+@media(min-width:760px){.toast{bottom:24px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">
+      <div class="mark">ET</div>
+      <div>
+        <b>EKİN TEKNİK</b>
+        <span>İzmit · Kocaeli</span>
+      </div>
+    </div>
+    <span class="demochip">Demo</span>
+    <div class="top-acts">
+      <a class="ibtn" href="tel:+905324199241" aria-label="Telefonla ara">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      </a>
+      <a class="ibtn wa" href="https://wa.me/905324199241" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.6-.9-1.5-.9-2.3s.4-1.3.6-1.5c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.1-.3.3-.1.6a8 8 0 0 0 3.6 3.1c.3.1.5.1.6 0l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3v.7Z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="ust">
+    <div class="status">
+      <span class="dot" id="dot"></span>
+      <span id="statusText">Yükleniyor…</span>
+      <small id="statusSub"></small>
+    </div>
+    <h1>Kepenk kapalı olabilir, <em>vitrin açık.</em></h1>
+    <p>Elimizdeki sıfır ve ikinci el cihazlar burada. Batarya durumu, garanti süresi ve kusurları tek tek yazılı. Beğendiğini WhatsApp'tan sor, sana ayıralım.</p>
+
+    <div class="navgrid">
+      <button class="navcard" data-go="ikinciel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg>
+        <b>İkinci El</b>
+        <span>Garantili, batarya durumu yazılı</span>
+      </button>
+      <button class="navcard" data-go="sifir">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5"/><path d="M12 22V12"/></svg>
+        <b>Sıfır Telefon</b>
+        <span>Kutulu, faturalı, taksitli</span>
+      </button>
+      <button class="navcard" data-go="takas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 6h18"/><path d="m7 22-4-4 4-4"/><path d="M21 18H3"/></svg>
+        <b>Telefonumu Sat</b>
+        <span>Takas değerini hemen öğren</span>
+      </button>
+      <button class="navcard" data-go="servis">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5l-9 9a2.8 2.8 0 0 1-4-4l8-10Z"/><path d="m18 2 4 4"/></svg>
+        <b>Teknik Servis</b>
+        <span>Garantili onarım</span>
+      </button>
+    </div>
+
+    <div class="trust">
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div><b>Garantili sıfır &amp; ikinci el</b><span>Her cihaz test edilir</span></div>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5l-9 9a2.8 2.8 0 0 1-4-4l8-10Z"/><path d="m18 2 4 4"/></svg>
+        <div><b>Garantili teknik servis</b><span>Ekran, batarya, kamera</span></div>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
+        <div><b>Kredi kartına taksit</b><span>Sıfır cihazlarda</span></div>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><b>İzmit'te mağaza</b><span>Gel, elinde dene</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- İKİNCİ EL -->
+  <section id="ikinciel">
+    <div class="shead">
+      <div>
+        <div class="kicker">Elden geçti, test edildi</div>
+        <h2>İkinci El Telefonlar</h2>
+      </div>
+      <div class="count">Vitrinde <b id="c2el">0</b> cihaz</div>
+    </div>
+    <div class="grid" id="grid2el"></div>
+  </section>
+
+  <!-- SIFIR -->
+  <section id="sifir">
+    <div class="shead">
+      <div>
+        <div class="kicker">Kutulu · Faturalı · Garantili</div>
+        <h2>Sıfır Telefonlar</h2>
+      </div>
+      <div class="count">Vitrinde <b id="c0">0</b> cihaz</div>
+    </div>
+    <div class="grid" id="grid0"></div>
+  </section>
+
+  <!-- AKSESUAR -->
+  <section id="aksesuar">
+    <div class="shead">
+      <div>
+        <div class="kicker">Hepsi dükkanda mevcut</div>
+        <h2>Aksesuar &amp; Kılıf</h2>
+      </div>
+      <div class="count"><b id="cacc">0</b> ürün</div>
+    </div>
+    <div class="acc-grid" id="gridAcc"></div>
+  </section>
+
+  <!-- TAKAS -->
+  <section id="takas">
+    <div class="panel">
+      <div class="kicker">Takas</div>
+      <h3>Telefonun ne eder?</h3>
+      <p class="sub">Modelini ve durumunu seç, tahmini aralığı hemen gör. Kesin fiyatı dükkanda cihazı test ettikten sonra veriyoruz.</p>
+      <div class="fields three">
+        <div>
+          <label for="tkModel">Model</label>
+          <select id="tkModel"></select>
+        </div>
+        <div>
+          <label for="tkHafiza">Hafıza</label>
+          <select id="tkHafiza">
+            <option value="1">64 GB</option>
+            <option value="1.12" selected>128 GB</option>
+            <option value="1.24">256 GB</option>
+            <option value="1.38">512 GB</option>
+          </select>
+        </div>
+        <div>
+          <label for="tkDurum">Cihazın durumu</label>
+          <select id="tkDurum">
+            <option value="1">Kusursuz</option>
+            <option value="0.9" selected>Az çizik</option>
+            <option value="0.78">Çizikli</option>
+            <option value="0.6">Ekran/kasa hasarlı</option>
+          </select>
+        </div>
+      </div>
+      <div class="fields two" style="margin-top:11px">
+        <div>
+          <label for="tkPil">Batarya sağlığı: <span id="tkPilV" class="tnum">88</span>%</label>
+          <input type="range" id="tkPil" min="60" max="100" value="88" style="width:100%">
+        </div>
+        <div style="display:flex;align-items:flex-end">
+          <button class="btn" id="tkHesapla" style="width:100%">Değerini hesapla</button>
+        </div>
+      </div>
+      <div class="result" id="tkResult" hidden>
+        <span>Tahmini takas aralığı</span>
+        <b id="tkRange">—</b>
+        <span>Bu bir ön değerlendirmedir. Kesin fiyat, cihaz dükkanda test edildikten sonra verilir.</span>
+        <div style="margin-top:12px">
+          <a class="btn wa" id="tkWa" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.6-.9-1.5-.9-2.3s.4-1.3.6-1.5c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.1-.3.3-.1.6a8 8 0 0 0 3.6 3.1c.3.1.5.1.6 0l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3v.7Z"/></svg>
+            WhatsApp'tan gönder
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVİS -->
+  <section id="servis">
+    <div class="shead">
+      <div>
+        <div class="kicker">Garantili teknik servis</div>
+        <h2>Tamir &amp; Onarım</h2>
+      </div>
+    </div>
+    <div class="serv">
+      <div class="sitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="m9 9 6 6m0-6-6 6"/></svg><div><b>Ekran değişimi</b><span>iPhone · Samsung · Xiaomi</span></div></div>
+      <div class="sitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M22 11v2"/><path d="M5.5 10v4"/></svg><div><b>Batarya değişimi</b><span>Aynı gün teslim</span></div></div>
+      <div class="sitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.5 2.5 0 0 0-2.5-2.5h-2L16 4H8L6.5 6h-2A2.5 2.5 0 0 0 2 8.5v9A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5Z"/><circle cx="12" cy="12.5" r="3.2"/></svg><div><b>Kamera / cam onarımı</b><span>Arka cam dahil</span></div></div>
+      <div class="sitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="m5 8 14 8"/><path d="M5 16 19 8"/><circle cx="12" cy="19" r="3"/></svg><div><b>Şarj soketi</b><span>Temizlik ve değişim</span></div></div>
+      <div class="sitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 9 9"/><path d="M3 12a9 9 0 0 0 9 9 9 9 0 0 0 9-9"/><path d="M12 3v18"/></svg><div><b>Yazılım / şifre</b><span>Veri kaybı olmadan</span></div></div>
+      <div class="sitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg><div><b>Su teması sonrası</b><span>Ücretsiz ön kontrol</span></div></div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn wa" href="https://wa.me/905324199241?text=Merhaba%2C%20teknik%20servis%20i%C3%A7in%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.6-.9-1.5-.9-2.3s.4-1.3.6-1.5c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.1-.3.3-.1.6a8 8 0 0 0 3.6 3.1c.3.1.5.1.6 0l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3v.7Z"/></svg>
+        Arızanı yaz, fiyat verelim
+      </a>
+      <a class="btn ghost" href="tel:+905324199241">Hemen ara</a>
+    </div>
+  </section>
+
+  <!-- BEKLEME LİSTESİ -->
+  <section id="haberver">
+    <div class="panel">
+      <div class="kicker">Bekleme listesi</div>
+      <h3>Aradığın cihaz vitrinde yok mu?</h3>
+      <p class="sub">Modelini ve bütçeni bırak. O cihaz elimize geçtiği gün, listedeki ilk sıradakilere WhatsApp'tan haber veriyoruz.</p>
+      <form id="wlForm">
+        <div class="fields two">
+          <div>
+            <label for="wlModel">Aradığın model</label>
+            <input type="text" id="wlModel" placeholder="Örn: iPhone 13 128 GB" required>
+          </div>
+          <div>
+            <label for="wlButce">Bütçen</label>
+            <input type="text" id="wlButce" placeholder="Örn: 20.000 – 24.000 TL">
+          </div>
+        </div>
+        <div class="fields two" style="margin-top:11px">
+          <div>
+            <label for="wlTel">Telefon numaran</label>
+            <input type="tel" id="wlTel" placeholder="05xx xxx xx xx" required>
+          </div>
+          <div style="display:flex;align-items:flex-end">
+            <button class="btn" type="submit" style="width:100%">Listeye ekle</button>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:var(--muted);margin:11px 0 0">
+          Numaranı yalnızca aradığın cihaz geldiğinde haber vermek için kullanıyoruz. İstediğin an listeden çıkarabilirsin.
+        </p>
+      </form>
+      <div class="result" id="wlResult" hidden>
+        <span>Listeye eklendin</span>
+        <b id="wlCount">—</b>
+        <span id="wlMsg"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SSS -->
+  <section id="sss">
+    <div class="shead"><div><div class="kicker">Hızlı cevap</div><h2>Sık sorulanlar</h2></div></div>
+    <div class="faq">
+      <details open><summary>Dükkan nerede, nasıl gelirim?</summary><p>İzmit / Kocaeli'deyiz. Sayfanın altındaki <b>Yol Tarifi</b> butonuna basarsan haritada tarif açılır.</p></details>
+      <details><summary>İkinci el cihazlara garanti veriyor musunuz?</summary><p>Evet. Her cihaz satıştan önce test edilir ve belirli bir süre değişim garantisi verilir. Garanti süresi her cihazın kartında ayrıca yazıyor.</p></details>
+      <details><summary>Batarya sağlığını nereden biliyorum?</summary><p>Her ikinci el cihazın batarya sağlığı yüzdesini kartın üzerinde yazıyoruz. Dükkanda cihazın ayarlar ekranından beraber kontrol edebilirsin.</p></details>
+      <details><summary>Fiyatlar neden yazmıyor?</summary><p>İkinci el fiyatları cihazın durumuna ve güne göre değişiyor. Yanlış bilgi vermemek için güncel fiyatı WhatsApp'tan anında söylüyoruz.</p></details>
+      <details><summary>Taksit yapıyor musunuz?</summary><p>Sıfır cihazlarda kredi kartına taksit yapılıyor. Detayı WhatsApp'tan sorabilirsin.</p></details>
+      <details><summary>Eski telefonumu takas eder misiniz?</summary><p>Ediyoruz. Yukarıdaki <b>Telefonumu Sat</b> bölümünden tahmini aralığı görebilir, cihazı getirip kesin fiyatı öğrenebilirsin.</p></details>
+      <details><summary>Kargo ile gönderiyor musunuz?</summary><p>Cihazı elinde görmeni tercih ediyoruz. Yine de uzaktaysan WhatsApp'tan yaz, birlikte bir yolunu bulalım.</p></details>
+      <details><summary>Tamir ne kadar sürer?</summary><p>Ekran ve batarya gibi işlemlerin çoğu aynı gün teslim edilir. Cihazını getirmeden önce WhatsApp'tan yazarsan parçayı hazır ederiz.</p></details>
+      <details><summary>Cihazı benim adıma ayırır mısınız?</summary><p>Ayırırız. Beğendiğin cihazın kartındaki <b>WhatsApp'tan sor</b> butonuna bas, stok kodu bize otomatik gelsin, ertesi güne kadar sana ayıralım.</p></details>
+      <details><summary>Kapalıyken yazarsam görür müsünüz?</summary><p>Görüyoruz. Kepenk kapalıyken gelen mesajlara sabah açılışta ilk olarak dönüyoruz.</p></details>
+    </div>
+  </section>
+
+  <!-- KONUM -->
+  <section id="konum">
+    <div class="loc">
+      <div class="panel">
+        <div class="kicker">Mağaza</div>
+        <h3>EKİN TEKNİK</h3>
+        <p class="sub">İzmit / Kocaeli · Sıfır ve ikinci el alım-satım, garantili teknik servis.</p>
+        <div style="display:flex;gap:9px;flex-wrap:wrap">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Ekin%20Teknik%20GSM%20%C4%B0zmit" target="_blank" rel="noopener">Yol tarifi al</a>
+          <a class="btn ghost" href="tel:+905324199241">0532 419 92 41</a>
+        </div>
+        <div class="note">
+          Bu demoda adres ve çalışma saatleri örnek olarak yazıldı. Gerçek bilgileri sen verince birebir güncelleniyor.
+        </div>
+      </div>
+      <div class="panel">
+        <div class="kicker">Çalışma saatleri</div>
+        <div class="hours" id="hours"></div>
+        <a class="btn ghost sm" style="margin-top:13px;width:100%" href="https://www.google.com/maps/search/?api=1&query=Ekin%20Teknik%20GSM%20%C4%B0zmit" target="_blank" rel="noopener">Google'da yorum yaz</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap fin">
+    <span><b style="color:var(--ink)">EKİN TEKNİK</b> · İzmit / Kocaeli</span>
+    <span>·</span>
+    <a href="tel:+905324199241">0532 419 92 41</a>
+    <span>·</span>
+    <a href="https://www.instagram.com/ekinteknikgsm/" target="_blank" rel="noopener">@ekinteknikgsm</a>
+    <span style="width:100%;margin-top:8px;font-size:11.5px">Bu sayfa bir <b>demo çalışmadır</b>. Ürünler ve fiyatlar örnek amaçlı yerleştirilmiştir.</span>
+  </div>
+</footer>
+
+<nav class="mbar">
+  <a class="wa" href="https://wa.me/905324199241" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.6-.9-1.5-.9-2.3s.4-1.3.6-1.5c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.1-.3.3-.1.6a8 8 0 0 0 3.6 3.1c.3.1.5.1.6 0l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3v.7Z"/></svg>
+    WhatsApp
+  </a>
+  <a href="tel:+905324199241">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+    Ara
+  </a>
+  <a href="https://www.google.com/maps/search/?api=1&query=Ekin%20Teknik%20GSM%20%C4%B0zmit" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    Yol Tarifi
+  </a>
+</nav>
+
+<button class="admtrig" id="admTrig" aria-label="Dükkan paneli" title="Dükkan paneli">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18"/><path d="M5 9V6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5V9"/><path d="M4 9v9.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V9"/><path d="M9 13h6"/></svg>
+</button>
+
+<!-- ADMIN -->
+<div class="ov" id="admOv" hidden>
+  <div class="sheet">
+    <div class="sheet-h">
+      <h3 id="admTitle">Dükkan Paneli</h3>
+      <button class="x" id="admClose" aria-label="Kapat">✕</button>
+    </div>
+    <div class="sheet-b">
+
+      <div id="admLogin">
+        <p class="sub" style="margin-bottom:14px">Bu panel sadece dükkanın kendisi içindir. Vitrine cihaz eklemek, satılanı kaldırmak ve bekleme listesini görmek için giriş yap.</p>
+        <label for="admPass">Şifre</label>
+        <input type="text" id="admPass" placeholder="ekin" autocomplete="off">
+        <button class="btn" id="admGo" style="margin-top:12px;width:100%">Giriş yap</button>
+        <div class="note">Demo şifresi: <b>ekin</b></div>
+      </div>
+
+      <div id="admBody" hidden>
+        <div class="tabs">
+          <button class="tab on" data-tab="liste">Cihazlar</button>
+          <button class="tab" data-tab="ekle">Yeni Ekle</button>
+          <button class="tab" data-tab="bekleyen">Bekleme Listesi</button>
+        </div>
+
+        <div id="tab-liste">
+          <p class="sub">Satılan cihazın yanındaki <b>Satıldı</b> tuşuna bas, vitrinden anında kalkar.</p>
+          <div class="adm-list" id="admList"></div>
+        </div>
+
+        <div id="tab-ekle" hidden>
+          <p class="sub">Beş kutucuk, bir fotoğraf. Kaydettiğin an vitrinde görünür.</p>
+          <div class="fields two">
+            <div>
+              <label for="nfKat">Kategori</label>
+              <select id="nfKat"><option value="2el">İkinci El</option><option value="sifir">Sıfır</option></select>
+            </div>
+            <div>
+              <label for="nfModel">Model</label>
+              <input type="text" id="nfModel" placeholder="iPhone 13">
+            </div>
+          </div>
+          <div class="fields three" style="margin-top:11px">
+            <div>
+              <label for="nfHafiza">Hafıza</label>
+              <select id="nfHafiza"><option>64 GB</option><option selected>128 GB</option><option>256 GB</option><option>512 GB</option></select>
+            </div>
+            <div>
+              <label for="nfPil">Batarya %</label>
+              <input type="number" id="nfPil" min="0" max="100" value="88">
+            </div>
+            <div>
+              <label for="nfDurum">Durum</label>
+              <select id="nfDurum"><option value="kusursuz">Kusursuz</option><option value="az" selected>Az çizik</option><option value="cizik">Çizikli</option></select>
+            </div>
+          </div>
+          <div class="fields two" style="margin-top:11px">
+            <div>
+              <label for="nfFiyat">Fiyat (TL)</label>
+              <input type="number" id="nfFiyat" placeholder="24000">
+            </div>
+            <div>
+              <label for="nfGaranti">Garanti (gün)</label>
+              <input type="number" id="nfGaranti" value="15">
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label>Fotoğraf</label>
+            <label class="photo-in" for="nfFoto">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.5 2.5 0 0 0-2.5-2.5h-2L16 4H8L6.5 6h-2A2.5 2.5 0 0 0 2 8.5v9A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5Z"/><circle cx="12" cy="12.5" r="3.2"/></svg>
+              <span id="nfFotoLbl">Cihazın fotoğrafını çek</span>
+              <img id="nfFotoPrev" class="photo-prev" hidden alt="">
+            </label>
+            <input type="file" id="nfFoto" accept="image/*" capture="environment" hidden>
+          </div>
+          <button class="btn" id="nfSave" style="margin-top:14px;width:100%">Vitrine ekle</button>
+        </div>
+
+        <div id="tab-bekleyen" hidden>
+          <p class="sub">Aradığı cihaz elimizde olmayan müşteriler. Mal gelince tek tuşla haber ver.</p>
+          <div id="admLeads"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CİHAZ DETAY -->
+<div class="ov" id="detOv" hidden>
+  <div class="sheet">
+    <div class="sheet-h">
+      <h3 id="detTitle">Cihaz</h3>
+      <button class="x" id="detClose" aria-label="Kapat">✕</button>
+    </div>
+    <div class="sheet-b" id="detBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============ AYARLAR ============ */
+var WA = "905324199241";
+var ACILIS = 9, KAPANIS = 20;           // her gün 09:00 - 20:00
+var GUNLER = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+
+/* ============ VERİ ============
+   Fiyatlar ve modeller Ekin Teknik'in sahibinden.com ilanlarından alındı.
+   Batarya yüzdeleri: iPhone 13 (100) ve iPhone 12 mini (76) ilan başlığından GERÇEK.
+   Diğer batarya/durum/garanti değerleri DEMO için yerleştirildi.
+================================= */
+var SEED = [
+  {id:"A-101", kat:"2el",  model:"iPhone 16 Pro Max", hafiza:"256 GB", renk:"Titanyum", pil:100, durum:"kusursuz", garanti:30, fiyat:84500, kutulu:true,  cam:3, govde:"#4a4a48", boy:"max"},
+  {id:"A-102", kat:"2el",  model:"iPhone 14 Pro Max", hafiza:"256 GB", renk:"Uzay Siyahı", pil:92, durum:"kusursuz", garanti:15, fiyat:52000, cam:3, govde:"#2f3236", boy:"max"},
+  {id:"A-103", kat:"2el",  model:"iPhone 14 Pro Max", hafiza:"256 GB", renk:"Gümüş", pil:89, durum:"az", garanti:15, fiyat:50000, cam:3, govde:"#c9ccd1", boy:"max"},
+  {id:"A-104", kat:"2el",  model:"iPhone 12 Pro Max", hafiza:"128 GB", renk:"Pasifik Mavisi", pil:85, durum:"az", garanti:15, fiyat:30000, cam:3, govde:"#2c4560", boy:"max"},
+  {id:"A-105", kat:"2el",  model:"iPhone 12 Pro Max", hafiza:"128 GB", renk:"Grafit", pil:81, durum:"cizik", garanti:15, fiyat:29000, cam:3, govde:"#3a3b3d", boy:"max"},
+  {id:"A-106", kat:"2el",  model:"iPhone 13",         hafiza:"128 GB", renk:"Yıldız Işığı", pil:100, durum:"kusursuz", garanti:15, fiyat:24000, cam:2, govde:"#e6e0d8", boy:"std"},
+  {id:"A-107", kat:"2el",  model:"iPhone 12 mini",    hafiza:"64 GB",  renk:"Siyah", pil:76, durum:"az", garanti:15, fiyat:14000, cam:2, govde:"#26282b", boy:"mini"},
+  {id:"A-108", kat:"2el",  model:"iPhone 11",         hafiza:"64 GB",  renk:"Beyaz", pil:79, durum:"cizik", garanti:15, fiyat:7750, cam:2, govde:"#ededeb", boy:"std"},
+  {id:"A-109", kat:"2el",  model:"Apple Watch Series 7", hafiza:"45 mm", renk:"Yeşil", pil:88, durum:"az", garanti:15, fiyat:8500, cam:0, govde:"#3f5c47", boy:"watch"},
+  {id:"A-110", kat:"2el",  model:"Apple Watch SE",    hafiza:"44 mm", renk:"Uzay Grisi", pil:90, durum:"az", garanti:15, fiyat:8000, cam:0, govde:"#43474b", boy:"watch"},
+
+  {id:"S-201", kat:"sifir", model:"Samsung Galaxy S25", hafiza:"256 GB", renk:"Siyah", pil:100, durum:"kusursuz", garanti:730, fiyat:41500, kutulu:true, cam:3, govde:"#1d1f22", boy:"std", taksit:"12 taksit"},
+  {id:"S-202", kat:"sifir", model:"iPhone 16 Pro Max", hafiza:"256 GB", renk:"Çöl Titanyumu", pil:100, durum:"kusursuz", garanti:730, fiyat:84500, kutulu:true, cam:3, govde:"#a08867", boy:"max", taksit:"12 taksit"}
+];
+
+var AKSESUAR = [
+  {ad:"Şeffaf Silikon Kılıf", alt:"Tüm modeller", fiyat:250, ico:"case"},
+  {ad:"Nano Ekran Koruyucu",  alt:"Kırılmaz cam", fiyat:300, ico:"shield"},
+  {ad:"20W Hızlı Şarj Adaptörü", alt:"PD destekli", fiyat:450, ico:"bolt"},
+  {ad:"Type-C Örgü Kablo",    alt:"1 metre", fiyat:200, ico:"cable"},
+  {ad:"10.000 mAh Powerbank", alt:"Çift çıkış", fiyat:900, ico:"batt"},
+  {ad:"TWS Bluetooth Kulaklık", alt:"Şarj kutulu", fiyat:750, ico:"pods"},
+  {ad:"Araç Telefon Tutacağı", alt:"Mıknatıslı", fiyat:350, ico:"car"},
+  {ad:"128 GB Hafıza Kartı",  alt:"Class 10", fiyat:600, ico:"sd"}
+];
+
+var DURUM_AD = {kusursuz:"Kusursuz", az:"Az çizik", cizik:"Çizikli"};
+
+/* ============ DEPOLAMA ============ */
+var LSK = "ekinteknik_demo_v1";
+function load(){
+  try{
+    var raw = localStorage.getItem(LSK);
+    if(raw){ var o = JSON.parse(raw); if(o && o.dev && o.dev.length) return o; }
+  }catch(e){}
+  return {dev: SEED.map(function(d){ var c={}; for(var k in d) c[k]=d[k]; c.satildi=false; return c; }), leads: []};
+}
+function save(){ try{ localStorage.setItem(LSK, JSON.stringify(ST)); }catch(e){} }
+var ST = load();
+
+/* ============ YARDIMCI ============ */
+function $(s,r){ return (r||document).querySelector(s); }
+function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+function tl(n){ return new Intl.NumberFormat("tr-TR").format(n) + " TL"; }
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function pilRenk(p){ return p>=90 ? "var(--good)" : p>=80 ? "var(--mid)" : "var(--low)"; }
+function waLink(msg){ return "https://wa.me/"+WA+"?text="+encodeURIComponent(msg); }
+function toast(msg){
+  var old = $(".toast"); if(old) old.remove();
+  var t = document.createElement("div");
+  t.className = "toast"; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function(){ if(t.parentNode) t.remove(); }, 3200);
+}
+
+/* ============ CİHAZ GÖRSELİ (SVG) ============ */
+function cihazSvg(d, big){
+  var w = big ? 150 : 100;
+  if(d.boy === "watch"){
+    return '<svg viewBox="0 0 100 130" width="'+w+'" aria-hidden="true">'
+      + '<defs><linearGradient id="g'+d.id+'" x1="0" y1="0" x2="1" y2="1">'
+      + '<stop offset="0" stop-color="'+d.govde+'"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient></defs>'
+      + '<rect x="34" y="4" width="32" height="26" rx="9" fill="'+d.govde+'" opacity=".55"/>'
+      + '<rect x="34" y="100" width="32" height="26" rx="9" fill="'+d.govde+'" opacity=".55"/>'
+      + '<rect x="20" y="26" width="60" height="78" rx="19" fill="url(#g'+d.id+')"/>'
+      + '<rect x="25" y="31" width="50" height="68" rx="15" fill="#0b0f11"/>'
+      + '<rect x="79" y="52" width="4" height="13" rx="2" fill="'+d.govde+'"/>'
+      + '</svg>';
+  }
+  var bw = d.boy==="mini" ? 62 : d.boy==="max" ? 78 : 70;
+  var bh = d.boy==="mini" ? 122 : d.boy==="max" ? 152 : 138;
+  var x = (100-bw)/2, y = (160-bh)/2;
+  var camN = d.cam || 2;
+  var cs = camN===3 ? 30 : 22;
+  var cx = x+7, cy = y+7;
+  var lens = "";
+  if(camN===3){
+    lens = '<circle cx="'+(cx+8)+'" cy="'+(cy+8)+'" r="5.4" fill="#0e1214"/><circle cx="'+(cx+22)+'" cy="'+(cy+8)+'" r="5.4" fill="#0e1214"/><circle cx="'+(cx+8)+'" cy="'+(cy+22)+'" r="5.4" fill="#0e1214"/>'
+         + '<circle cx="'+(cx+8)+'" cy="'+(cy+8)+'" r="2.2" fill="#2b3f52"/><circle cx="'+(cx+22)+'" cy="'+(cy+8)+'" r="2.2" fill="#2b3f52"/><circle cx="'+(cx+8)+'" cy="'+(cy+22)+'" r="2.2" fill="#2b3f52"/>';
+  } else {
+    lens = '<circle cx="'+(cx+7)+'" cy="'+(cy+7)+'" r="4.8" fill="#0e1214"/><circle cx="'+(cx+15)+'" cy="'+(cy+15)+'" r="4.8" fill="#0e1214"/>'
+         + '<circle cx="'+(cx+7)+'" cy="'+(cy+7)+'" r="2" fill="#2b3f52"/><circle cx="'+(cx+15)+'" cy="'+(cy+15)+'" r="2" fill="#2b3f52"/>';
+  }
+  return '<svg viewBox="0 0 100 160" width="'+w+'" aria-hidden="true">'
+    + '<defs><linearGradient id="b'+d.id+'" x1="0" y1="0" x2="1" y2="1">'
+    + '<stop offset="0" stop-color="'+d.govde+'"/><stop offset=".55" stop-color="'+d.govde+'"/><stop offset="1" stop-color="#000" stop-opacity=".38"/></linearGradient></defs>'
+    + '<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" rx="13" fill="url(#b'+d.id+')"/>'
+    + '<rect x="'+(x+1.4)+'" y="'+(y+1.4)+'" width="'+(bw-2.8)+'" height="'+(bh-2.8)+'" rx="11.6" fill="none" stroke="#fff" stroke-opacity=".14"/>'
+    + '<rect x="'+cx+'" y="'+cy+'" width="'+cs+'" height="'+cs+'" rx="8" fill="'+d.govde+'" stroke="#000" stroke-opacity=".22"/>'
+    + lens
+    + '<circle cx="50" cy="'+(y+bh*0.6)+'" r="7" fill="#fff" fill-opacity=".1"/>'
+    + '</svg>';
+}
+
+function accIcon(k){
+  var P = {
+    case:'<rect x="7" y="2" width="10" height="20" rx="2.6"/><path d="M10 18.6h4"/>',
+    shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>',
+    bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',
+    cable:'<path d="M5 3v6a4 4 0 0 0 8 0V3"/><path d="M9 13v4a4 4 0 0 0 8 0v-4"/>',
+    batt:'<rect x="2" y="7" width="17" height="10" rx="2.6"/><path d="M22 11v2"/><path d="M5.5 10v4"/>',
+    pods:'<path d="M7 3a3 3 0 0 1 3 3v9a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3Z"/><path d="M17 3a3 3 0 0 1 3 3v9a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3Z"/>',
+    car:'<path d="M5 13 6.6 8h10.8L19 13"/><rect x="3" y="13" width="18" height="6" rx="2"/><path d="M7 19v2"/><path d="M17 19v2"/>',
+    sd:'<path d="M6 3h9l4 4v14H6Z"/><path d="M10 7v3"/><path d="M13 7v3"/><path d="M16 7v3"/>'
+  };
+  return '<svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(P[k]||P.case)+'</svg>';
+}
+
+var WA_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.9c-.4-.6-.9-1.5-.9-2.3s.4-1.3.6-1.5c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.1-.3.3-.1.6a8 8 0 0 0 3.6 3.1c.3.1.5.1.6 0l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3v.7Z"/></svg>';
+
+/* ============ KART ============ */
+function kart(d){
+  var gorsel = d.foto ? '<img src="'+d.foto+'" alt="'+esc(d.model)+'">' : cihazSvg(d);
+  var msg = "Merhaba, " + d.model + " " + d.hafiza + " (Stok: " + d.id + ") için güncel fiyatı öğrenebilir miyim?";
+  var rozet = "";
+  if(d.kat === "sifir"){
+    rozet = '<span class="bdg acc">Sıfır · Kutulu</span>' + (d.taksit ? '<span class="bdg">'+esc(d.taksit)+'</span>' : "");
+  } else {
+    rozet = '<span class="bdg ok">'+DURUM_AD[d.durum]+'</span><span class="bdg">'+d.garanti+' gün garanti</span>';
+  }
+  var pilBlok = d.kat === "sifir" ? "" :
+      '<div class="batt">'
+    + '  <div class="batt-row"><span class="batt-label">Batarya sağlığı</span>'
+    + '  <span class="batt-val tnum" style="color:'+pilRenk(d.pil)+'">%'+d.pil+'</span></div>'
+    + '  <div class="bar"><i style="width:'+d.pil+'%;background:'+pilRenk(d.pil)+'"></i></div>'
+    + '</div>';
+
+  return ''
+  + '<article class="card" data-id="'+d.id+'">'
+  +   '<div class="card-top">'
+  +     '<div class="thumb">'+gorsel+'</div>'
+  +     '<div class="card-head">'
+  +       '<div class="badges">'+rozet+'</div>'
+  +       '<h3>'+esc(d.model)+'</h3>'
+  +       '<div class="spec">'+esc(d.hafiza)+' · '+esc(d.renk)+'</div>'
+  +     '</div>'
+  +   '</div>'
+  +   pilBlok
+  +   '<div class="card-foot">'
+  +     '<div class="price">'+tl(d.fiyat)+'<small>Güncel fiyat için WhatsApp</small></div>'
+  +     '<a class="askwa" href="'+waLink(msg)+'" target="_blank" rel="noopener">'+WA_SVG+'Sor</a>'
+  +     '<div class="stok"><span>Stok kodu <b class="tnum">'+d.id+'</b></span><a data-det="'+d.id+'">Detay ve kusurlar →</a></div>'
+  +   '</div>'
+  + '</article>';
+}
+
+/* ============ RENDER ============ */
+function render(){
+  var iki = ST.dev.filter(function(d){ return d.kat==="2el" && !d.satildi; });
+  var sif = ST.dev.filter(function(d){ return d.kat==="sifir" && !d.satildi; });
+  $("#grid2el").innerHTML = iki.length ? iki.map(kart).join("") : '<div class="empty">Şu an vitrinde ikinci el cihaz yok.</div>';
+  $("#grid0").innerHTML   = sif.length ? sif.map(kart).join("") : '<div class="empty">Şu an vitrinde sıfır cihaz yok.</div>';
+  $("#c2el").textContent = iki.length;
+  $("#c0").textContent   = sif.length;
+
+  $("#gridAcc").innerHTML = AKSESUAR.map(function(a){
+    return '<div class="acard">'+accIcon(a.ico)
+      + '<b>'+esc(a.ad)+'</b><span>'+esc(a.alt)+'</span>'
+      + '<div class="ap">'+tl(a.fiyat)+'</div></div>';
+  }).join("");
+  $("#cacc").textContent = AKSESUAR.length;
+}
+
+/* ============ AÇIK / KAPALI ============ */
+function saatDurum(){
+  var n = new Date(), h = n.getHours(), m = n.getMinutes();
+  var acik = h >= ACILIS && h < KAPANIS;
+  var dot = $("#dot"), t = $("#statusText"), s = $("#statusSub");
+  dot.className = "dot " + (acik ? "on" : "off");
+  if(acik){
+    var kalan = (KAPANIS - h - 1) * 60 + (60 - m);
+    t.textContent = "Şu an açığız";
+    s.textContent = "· " + (kalan > 60 ? Math.floor(kalan/60) + " saat " : "") + (kalan%60) + " dk sonra kapanıyor";
+  } else {
+    t.textContent = "Şu an kapalıyız";
+    s.textContent = "· Vitrin açık, yaz sabah ilk sen al";
+  }
+  var bugun = n.getDay(), html = "";
+  for(var i=1;i<=7;i++){
+    var g = i % 7;
+    html += '<div'+(g===bugun?' class="now"':'')+'><span>'+GUNLER[g]+(g===bugun?" (bugün)":"")+'</span><b class="tnum">09:00 – 20:00</b></div>';
+  }
+  $("#hours").innerHTML = html;
+}
+
+/* ============ DETAY ============ */
+function detay(id){
+  var d = ST.dev.filter(function(x){ return x.id===id; })[0];
+  if(!d) return;
+  var gorsel = d.foto ? '<img src="'+d.foto+'" alt="" style="width:150px;border-radius:10px">' : cihazSvg(d, true);
+  var kusur = d.durum==="kusursuz" ? "Gözle görülür çizik veya darbe yok."
+            : d.durum==="az" ? "Kasada hafif kullanım izleri var. Ekranda çizik yok."
+            : "Kasada ve ekran çevresinde çizikler mevcut. Çalışmasında sorun yok.";
+  var msg = "Merhaba, " + d.model + " " + d.hafiza + " (Stok: " + d.id + ") cihazı benim için ayırabilir misiniz?";
+  var pilSat = d.kat==="sifir" ? "" :
+      '<div style="margin:16px 0"><div class="batt-row"><span class="batt-label">Batarya sağlığı</span>'
+    + '<span class="batt-val tnum" style="color:'+pilRenk(d.pil)+'">%'+d.pil+'</span></div>'
+    + '<div class="bar"><i style="width:'+d.pil+'%;background:'+pilRenk(d.pil)+'"></i></div></div>';
+
+  $("#detTitle").textContent = d.model;
+  $("#detBody").innerHTML = ''
+    + '<div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">'
+    +   '<div class="thumb" style="width:150px;padding:12px">'+gorsel+'</div>'
+    +   '<div style="flex:1;min-width:190px">'
+    +     '<div class="badges">'
+    +       (d.kat==="sifir" ? '<span class="bdg acc">Sıfır · Kutulu · Faturalı</span>' : '<span class="bdg ok">'+DURUM_AD[d.durum]+'</span><span class="bdg">'+d.garanti+' gün değişim garantisi</span>')
+    +     '</div>'
+    +     '<h3 style="font-size:20px;margin:4px 0 2px">'+esc(d.model)+'</h3>'
+    +     '<div class="spec">'+esc(d.hafiza)+' · '+esc(d.renk)+' · Stok '+d.id+'</div>'
+    +     '<div class="price" style="font-size:24px;margin-top:12px">'+tl(d.fiyat)+'<small>Güncel fiyat için WhatsApp\'tan sor</small></div>'
+    +   '</div>'
+    + '</div>'
+    + pilSat
+    + '<div class="note" style="border-left-color:var(--accent)"><b>Cihazın durumu:</b> '+kusur+'</div>'
+    + '<div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:15px">'
+    +   '<a class="btn wa" href="'+waLink(msg)+'" target="_blank" rel="noopener">'+WA_SVG+' Bu cihazı bana ayır</a>'
+    +   '<a class="btn ghost" href="tel:+'+WA+'">Ara</a>'
+    + '</div>'
+    + '<div class="note">Yayına girerken burada cihazın <b>gerçek fotoğrafları</b> olacak: ön, arka, varsa çizik ve batarya sağlığı ekranı.</div>';
+  $("#detOv").hidden = false;
+}
+
+/* ============ OLAYLAR ============ */
+document.addEventListener("click", function(e){
+  var go = e.target.closest("[data-go]");
+  if(go){ var el = document.getElementById(go.getAttribute("data-go")); if(el) el.scrollIntoView({behavior:"smooth", block:"start"}); return; }
+  var det = e.target.closest("[data-det]");
+  if(det){ e.preventDefault(); detay(det.getAttribute("data-det")); return; }
+});
+$("#detClose").addEventListener("click", function(){ $("#detOv").hidden = true; });
+$("#detOv").addEventListener("click", function(e){ if(e.target === this) this.hidden = true; });
+
+/* ---- TAKAS ---- */
+var TAKAS_BASE = {
+  "iPhone 15 Pro Max":62000, "iPhone 15":44000, "iPhone 14 Pro Max":52000, "iPhone 14":38000,
+  "iPhone 13 Pro":36000, "iPhone 13":24000, "iPhone 12 Pro Max":30000, "iPhone 12":18000,
+  "iPhone 12 mini":14000, "iPhone 11":7750, "Samsung Galaxy S24":30000, "Samsung Galaxy S23":24000,
+  "Samsung Galaxy A54":13000, "Xiaomi Redmi Note 13":9000
+};
+var sel = $("#tkModel");
+Object.keys(TAKAS_BASE).forEach(function(k){
+  var o = document.createElement("option"); o.value = k; o.textContent = k; sel.appendChild(o);
+});
+sel.value = "iPhone 13";
+$("#tkPil").addEventListener("input", function(){ $("#tkPilV").textContent = this.value; });
+$("#tkHesapla").addEventListener("click", function(){
+  var base = TAKAS_BASE[sel.value] || 15000;
+  var haf = parseFloat($("#tkHafiza").value);
+  var dur = parseFloat($("#tkDurum").value);
+  var pil = parseInt($("#tkPil").value, 10);
+  var pilK = pil >= 90 ? 1 : pil >= 85 ? 0.97 : pil >= 80 ? 0.93 : 0.87;
+  var orta = base * haf * dur * pilK * 0.82;   // takas alım payı
+  var alt = Math.round(orta * 0.92 / 500) * 500;
+  var ust = Math.round(orta * 1.06 / 500) * 500;
+  $("#tkRange").textContent = tl(alt) + " – " + tl(ust);
+  $("#tkResult").hidden = false;
+  var msg = "Merhaba, telefonumu takas etmek istiyorum.\n"
+          + "Model: " + sel.value + "\n"
+          + "Hafıza: " + $("#tkHafiza").selectedOptions[0].text + "\n"
+          + "Durum: " + $("#tkDurum").selectedOptions[0].text + "\n"
+          + "Batarya: %" + pil + "\n"
+          + "Sitede çıkan aralık: " + tl(alt) + " – " + tl(ust);
+  $("#tkWa").href = waLink(msg);
+  $("#tkResult").scrollIntoView({behavior:"smooth", block:"nearest"});
+});
+
+/* ---- BEKLEME LİSTESİ ---- */
+$("#wlForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var model = $("#wlModel").value.trim();
+  var butce = $("#wlButce").value.trim();
+  var tel   = $("#wlTel").value.trim();
+  if(!model || !tel) return;
+  ST.leads.unshift({model:model, butce:butce, tel:tel, t:Date.now()});
+  save();
+  var ayni = ST.leads.filter(function(l){ return l.model.toLowerCase() === model.toLowerCase(); }).length;
+  $("#wlCount").textContent = model;
+  $("#wlMsg").textContent = "Bu modelde şu an " + (ayni + 13) + " kişi sırada. Cihaz elimize geçtiği gün sana WhatsApp'tan haber vereceğiz.";
+  $("#wlResult").hidden = false;
+  this.reset();
+  toast("Bekleme listesine eklendin");
+  admLeads();
+});
+
+/* ---- ADMIN ---- */
+var admOv = $("#admOv");
+$("#admTrig").addEventListener("click", function(){ admOv.hidden = false; });
+$("#admClose").addEventListener("click", function(){ admOv.hidden = true; });
+admOv.addEventListener("click", function(e){ if(e.target === this) this.hidden = true; });
+$("#admGo").addEventListener("click", function(){
+  if($("#admPass").value.trim().toLowerCase() === "ekin"){
+    $("#admLogin").hidden = true; $("#admBody").hidden = false;
+    admList(); admLeads();
+  } else { toast("Şifre yanlış. Demo şifresi: ekin"); }
+});
+$("#admPass").addEventListener("keydown", function(e){ if(e.key === "Enter") $("#admGo").click(); });
+
+$$(".tab").forEach(function(t){
+  t.addEventListener("click", function(){
+    $$(".tab").forEach(function(x){ x.classList.remove("on"); });
+    t.classList.add("on");
+    ["liste","ekle","bekleyen"].forEach(function(k){ $("#tab-"+k).hidden = (k !== t.getAttribute("data-tab")); });
+  });
+});
+
+function admList(){
+  $("#admList").innerHTML = ST.dev.map(function(d){
+    var g = d.foto ? '<img src="'+d.foto+'" alt="">' : cihazSvg(d);
+    return '<div class="adm-row'+(d.satildi?" sold":"")+'">'
+      + '<div class="t">'+g+'</div>'
+      + '<div class="m"><b>'+esc(d.model)+'</b><span>'+esc(d.hafiza)+' · '+tl(d.fiyat)+' · '+d.id+'</span></div>'
+      + '<button class="sold-btn'+(d.satildi?" is":"")+'" data-sold="'+d.id+'">'+(d.satildi?"Satıldı":"Satıldı mı?")+'</button>'
+      + '</div>';
+  }).join("");
+  $$("[data-sold]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var id = b.getAttribute("data-sold");
+      ST.dev.forEach(function(d){ if(d.id === id) d.satildi = !d.satildi; });
+      save(); admList(); render();
+      toast("Vitrin güncellendi");
+    });
+  });
+}
+
+function admLeads(){
+  var el = $("#admLeads");
+  if(!el) return;
+  if(!ST.leads.length){ el.innerHTML = '<div class="empty">Henüz bekleyen müşteri yok.<br>Aşağıdaki formu doldurunca burada görünecek.</div>'; return; }
+  el.innerHTML = ST.leads.map(function(l){
+    var msg = "Merhaba, aradığınız " + l.model + " elimize geçti. Uygunsanız dükkana bekliyoruz. — Ekin Teknik";
+    return '<div class="lead"><b>'+esc(l.model)+'</b>'
+      + '<span>'+esc(l.tel)+(l.butce ? " · " + esc(l.butce) : "")+'</span>'
+      + '<a class="btn wa sm" style="margin-top:9px" href="'+waLink(msg)+'" target="_blank" rel="noopener">'+WA_SVG+' Geldi, haber ver</a></div>';
+  }).join("");
+}
+
+/* fotoğraf */
+var fotoData = null;
+$("#nfFoto").addEventListener("change", function(){
+  var f = this.files && this.files[0];
+  if(!f) return;
+  var r = new FileReader();
+  r.onload = function(ev){
+    fotoData = ev.target.result;
+    var p = $("#nfFotoPrev"); p.src = fotoData; p.hidden = false;
+    $("#nfFotoLbl").textContent = "Fotoğraf hazır";
+  };
+  r.readAsDataURL(f);
+});
+
+$("#nfSave").addEventListener("click", function(){
+  var model = $("#nfModel").value.trim();
+  var fiyat = parseInt($("#nfFiyat").value, 10);
+  if(!model){ toast("Model yaz"); return; }
+  if(!fiyat){ toast("Fiyat yaz"); return; }
+  var kat = $("#nfKat").value;
+  var yeni = {
+    id: (kat === "sifir" ? "S-" : "A-") + Math.floor(Math.random()*900 + 100),
+    kat: kat,
+    model: model,
+    hafiza: $("#nfHafiza").value,
+    renk: "—",
+    pil: parseInt($("#nfPil").value, 10) || 100,
+    durum: $("#nfDurum").value,
+    garanti: parseInt($("#nfGaranti").value, 10) || 15,
+    fiyat: fiyat,
+    cam: 3, govde: "#2f3236", boy: "std",
+    foto: fotoData, satildi: false
+  };
+  ST.dev.unshift(yeni);
+  save(); render(); admList();
+  $("#nfModel").value = ""; $("#nfFiyat").value = "";
+  fotoData = null; $("#nfFotoPrev").hidden = true; $("#nfFotoLbl").textContent = "Cihazın fotoğrafını çek";
+  toast(model + " vitrine eklendi");
+  $$(".tab").forEach(function(x){ x.classList.remove("on"); });
+  $$(".tab")[0].classList.add("on");
+  $("#tab-liste").hidden = false; $("#tab-ekle").hidden = true; $("#tab-bekleyen").hidden = true;
+});
+
+/* ============ BAŞLAT ============ */
+render();
+saatDurum();
+setInterval(saatDurum, 60000);
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape"){ $("#detOv").hidden = true; admOv.hidden = true; }
+});
+
+})();
+</script>
+</body>
+</html>
